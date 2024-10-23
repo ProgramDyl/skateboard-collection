@@ -24,6 +24,11 @@ a:hover {
 
 body {
   margin: 0;
+  background-image: url('/public/images/bowl-with-skater.jpg');
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
   display: flex;
   place-items: center;
   justify-content: center;
@@ -34,12 +39,22 @@ body {
   min-height: 100vh;
 }
 
+
 h1 {
-  font-size: 3.2em;
+  font-size: 48px;
+  font-weight: bold;
   line-height: 1.1;
+  color: #ff4500;
+  text-shadow: 2px 2px 4px #000000;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap';
 }
 
 button {
+  margin-top: 10px;
+  display: block;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -79,12 +94,27 @@ button:focus-visible {
   padding: 5px; /* Added padding for visibility */
 }
 
-.skateboard-info {
-  min-width: 300px;
-  padding-left: 1em;
-  border: 1px solid red; /* Temporarily added for visibility */
-  padding: 5px; /* Added padding for visibility */
+.card {
+  width: 500px; 
+  height: auto; 
+  margin: 10px;
+  border: 2px solid #000;
+  padding: 10px;  
 }
+
+.card img {
+  width: 100%; 
+  height: auto; 
+}
+
+.skateboard-info {
+  padding-left: 1em;
+}
+
+.row {
+  margin-bottom: 75px;
+}
+
 
 .dropzone {
   border: 2px dashed #007bff;

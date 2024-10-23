@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 export default function Card(props) {
   const { skateboard, apiHost, showLinks } = props;
 
-  console.log('Card props:', props); // Verify props in console
-
   return (
     <div className="card mb-3">
       <div className="card-body">

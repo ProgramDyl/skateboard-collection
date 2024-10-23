@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Card from '../ui/Card';
 
+
 export default function Home() {
   // Store the result from API
   const [skateboards, setSkateboards] = useState([]); // Initialize as an empty array
@@ -43,13 +44,17 @@ export default function Home() {
           Add New Deck
         </Link>
       </p>
-      {skateboards.length > 0 ? (
-        skateboards.map((skateboard, index) => (
-          <Card skateboard={skateboard} apiHost={apiHost} showLinks={true} key={index} />
-        ))
-      ) : (
-        <p>No Skateboards.</p>
-      )}
+      <div className="container">
+        <div className="row">
+          {skateboards.length > 0 ? (
+            skateboards.map((skateboard, index) => (
+              <Card skateboard={skateboard} apiHost={apiHost} showLinks={true} key={index} />
+            ))
+          ) : (
+            <p>No Skateboards.</p>
+          )}
+        </div>
+      </div>
     </>
   );
 }
