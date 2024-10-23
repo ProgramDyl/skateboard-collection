@@ -18,12 +18,13 @@ export default function Home() {
       const response = await fetch(apiUrl);
       if (response.ok) {
         const data = await response.json();
+        console.log('API data:', data); // Checking console for response from api
         if (!ignore) {
-          setSkateboards(data); // Corrected the state function name
+          setSkateboards(data); 
           console.log("Grabbed skateboards:", data);  
         }
       } else {
-        setSkateboards(null);
+        console.error("Failed to grab skateboards.Bummer.");
       }
     }
 
@@ -32,7 +33,7 @@ export default function Home() {
     return () => {
       ignore = true;
     };
-  }, []); // Run only once
+  }, [apiUrl]); // Run only once
 
   return (
     <>

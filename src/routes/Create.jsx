@@ -1,19 +1,30 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
+import { useDropzone } from 'react-dropzone';
 
 export default function Create() {
     //Skateboard-API url
     const apiURL = import.meta.env.VITE_API_HOST + 'api/skateboards/create';
 
     //form state variables
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
     const [brand, setBrand] = useState('');
     const [modelName, setModelName] = useState('');
     const [size, setSize] = useState('');
     const [style, setStyle] = useState('');
     const [filename, setFilename] = useState('');
 
+    //File drop handling
+    const onDrop = (acceptedFiles) => {
+        setFilename(acceptedFiles[0]);
+        setValue('filename', acceptedFiles[0], { shouldValidate: true });
+    };
+
+    // Get props for dropzone!
+    const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+    // Handling form submissions
     function addSkateboard(data) {
 
         console.log(data);
@@ -24,7 +35,7 @@ export default function Create() {
         formData.append('modelName', data.modelName);
         formData.append('size', data.size);
         formData.append('style', data.style);
-        formData.append('image', data.filename[0]);
+        formData.append('image', filename);
 
         async function postData() {
             const response = await fetch(apiURL, {
@@ -32,7 +43,7 @@ export default function Create() {
                 body: formData,
             });
             if (response.ok) {
-                window.location.href = '/';
+                window.location.href = '/'; //Redirect the user upon success
             } else {
                 //TODO: handle error
             }
@@ -57,18 +68,24 @@ export default function Create() {
 
                 <div className="mb-3">
                     <label className="form-label">Size</label>
-                    <input {...register("size")} type="text" className="form-control bg-light" value={size} onChange={e => setSize(e.target.value)}/>
+                    <input {...register("size")} type="text" className="form-control bg-light" value={size} onChange={e => setSize(e.target.value)} />
                     {errors.size && <span className="text-danger">Board size is required!</span>}
                 </div>
 
                 <div>
                     <label className="form-label">Style</label>
-                    <input {...register("style", {required: true, maxLength: 100 })} type="text" className="form-control bg-light" value={style} onChange={e => setStyle(e.target.value)}/>
+                    <input {...register("style", { required: true, maxLength: 100 })} type="text" className="form-control bg-light" value={style} onChange={e => setStyle(e.target.value)} />
                 </div>
-            
+
+            {/* DROP-ZONE for image */}
                 <div className="mb-3">
                     <label className="form-label">Image</label>
-                    <input {...register("Image", { required: true, maxLength: 100 })} type="text" className="form-control bg-light" onChange={e => setFilename(e.target.files[0])} />
+                    <div {...getRootProps()} className="dropzone">
+                        <input {...getInputProps()} {...register("filename", { required: true })} type="file" className="form-control bg-light" />
+                        <p>Drop an image here, or click to select from local folder.</p>
+                    </div>
+                    {filename && <p>Selected file: {filename.name}</p>}
+                    {errors.filename && <span className="text-danger">Image is required.</span>}
                 </div>
                 <button type="submit" className="btn btn-primary">Add</button>
                 <Link to="/" className="btn btn-outline-secondary ms-3">Cancel</Link>

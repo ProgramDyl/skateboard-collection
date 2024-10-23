@@ -1,8 +1,4 @@
-# React + Vite
+# JamWare Skate Shop! 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*Welcome to my skate shop!* 
+Here is the UI component for modelling a skateboard API I built. My plan is to continually add to this collection and build a responsive, beautful, front-end that is designed to look like a store counter. For now though, a relatively basic form and some pretty text will have to do.git 

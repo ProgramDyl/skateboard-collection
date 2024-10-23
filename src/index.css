@@ -75,10 +75,27 @@ button:focus-visible {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  
+  border: 1px solid red; /* Temporarily added for visibility */
+  padding: 5px; /* Added padding for visibility */
 }
 
 .skateboard-info {
   min-width: 300px;
   padding-left: 1em;
+  border: 1px solid red; /* Temporarily added for visibility */
+  padding: 5px; /* Added padding for visibility */
+}
+
+.dropzone {
+  border: 2px dashed #007bff;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.position-absolute {
+  border: 1px solid red; /* Temporarily added for visibility */
+  padding: 5px; /* Added padding for visibility */
 }
