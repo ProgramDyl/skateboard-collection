@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import Card from '../ui/Card';
-
+import Card from '../ui/Card.jsx';
 
 export default function Home() {
   // Store the result from API
@@ -13,48 +10,43 @@ export default function Home() {
   const apiHost = import.meta.env.VITE_API_HOST;
   const apiUrl = apiHost + '/api/skateboards/all';
 
+  // Get contacts from API
   useEffect(() => {
-    // Fetch data from API
     async function fetchData() {
-      const response = await fetch(apiUrl);
-      if (response.ok) {
-        const data = await response.json();
-        console.log('API data:', data); // Checking console for response from api
-        if (!ignore) {
-          setSkateboards(data); 
-          console.log("Grabbed skateboards:", data);  
+      try {
+        const response = await fetch('http://localhost:3000/api/skateboards/all');
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Data fetched:", data);
+          setSkateboards(data);
+        } else {
+          console.error("Failed to fetch skateboards:", response.status);
+          console.log("Response body:", await response.text());
+          setSkateboards(null);
         }
-      } else {
-        console.error("Failed to grab skateboards.Bummer.");
+      } catch (error) {
+        console.error('Error fetching skateboards:', error);
+        setSkateboards(null);
       }
     }
-
-    let ignore = false;
     fetchData();
-    return () => {
-      ignore = true;
-    };
-  }, [apiUrl]); // Run only once
+  }, []); // run only once
+
+  if (skateboards === null) {
+    return <p>Loading...</p>; // Show a loading state while fetching data
+  }
 
   return (
     <>
       <h1>Dylan's Skate Shop</h1>
-      <p>
-        <Link to="/create" className="btn btn-outline-secondary">
-          Add New Deck
-        </Link>
-      </p>
-      <div className="container">
-        <div className="row">
-          {skateboards.length > 0 ? (
-            skateboards.map((skateboard, index) => (
-              <Card skateboard={skateboard} apiHost={apiHost} showLinks={true} key={index} />
-            ))
-          ) : (
-            <p>No Skateboards.</p>
-          )}
-        </div>
-      </div>
+      <Link to="/create" className="btn btn-outline-secondary">Add a New Skateboard</Link>
+      {
+        skateboards.length > 0 ?
+          skateboards.map(skateboard => (
+            <Card skateboard={skateboard} apiHost={apiHost} showLinks={true} />
+          )) : 
+          <p>No skateboards. Bummer.</p>
+      }
     </>
   );
 }

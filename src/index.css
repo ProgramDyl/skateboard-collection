@@ -24,7 +24,7 @@ a:hover {
 
 body {
   margin: 0;
-  background-image: url('/public/images/bowl-with-skater.jpg');
+  background-image: url('../public/images/bowl-with-skater.jpg');
   background-size: cover;
   background-repeat:no-repeat;
   background-attachment: fixed;

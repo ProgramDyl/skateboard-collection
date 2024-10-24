@@ -3,40 +3,49 @@ import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 
 export default function Create() {
-  const apiURL = import.meta.env.VITE_API_HOST + '/api/skateboards/create';
+  //api url
+  const apiURL = 'http://localhost:3000/api/skateboards/create';
+  
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-  const [image, setImage] = useState(null);
+  
+  // State for handling image file
+  const [imageFile, setImageFile] = useState(null);
 
+  // Function to handle image file change
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-    setValue('image', e.target.files[0], { shouldValidate: true });
+    setImageFile(e.target.files);
   };
 
   const addSkateboard = async (data) => {
+    console.log(data);
     const formData = new FormData();
     formData.append('brand', data.brand);
     formData.append('modelName', data.modelName);
     formData.append('size', data.size);
     formData.append('style', data.style);
-    formData.append('image', image);
-
-    const response = await fetch(apiURL, {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (response.ok) {
-      window.location.href = '/';
-    } else {
-      console.error('Failed to create skateboard');
+    if (imageFile) {
+      formData.append('image', imageFile[0]);
     }
+    
+    async function postData() {
+      const response = await fetch(apiURL, {
+        method: 'POST',
+        body: formData,
+      });
+      if(response.ok) {
+        window.location.href = '/';
+      } else {
+        //To-do: handle error
+      }
+    }
+    postData();
   };
 
   return (
     <>
-      <h1>Add New Skateboard!</h1>
+      <h1>Add a board to the collection!</h1>
       <form onSubmit={handleSubmit(addSkateboard)} method="post" encType="multipart/form-data">
-        <div>
+        <div className="mb-3">
           <label className="form-label">Brand</label>
           <input {...register("brand", { required: true, maxLength: 100 })} type="text" className="form-control bg-light" />
           {errors.brand && <span className="text-danger">Brand is required.</span>}
@@ -57,9 +66,7 @@ export default function Create() {
         </div>
         <div className="mb-3">
           <label className="form-label">Image</label>
-          <input {...register("image", { required: true })} type="file" className="form-control bg-light" onChange={handleImageChange} />
-          {image && <p>Selected file: {image.name}</p>}
-          {errors.image && <span className="text-danger">Image is required.</span>}
+          <input {...register("image")} type="file" className="form-control bg-light" onChange={handleImageChange} />
         </div>
         <button type="submit" className="btn btn-primary">Add</button>
         <Link to="/" className="btn btn-outline-secondary ms-3">Cancel</Link>
