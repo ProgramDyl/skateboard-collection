@@ -34,14 +34,40 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  flex-direction: column;
+  flex-direction: row;
   min-width: 320px;
   min-height: 100vh;
 }
 
+.btn-light {
+  background-color: #ff6347; /* Tomato */
+  border-color: #ff6347;
+  color: #fff;
+}
 
+.btn-light:hover {
+  background-color: #2e8b57; /* SeaGreen */
+  border-color: #2e8b57;
+  color: #fff;
+}
+
+.card {
+  background-color: #222;
+  color: #fff;
+  border: 2px solid #444;
+}
+
+.card-title {
+  color: #ffd700; /* Gold */
+}
+
+.card-text {
+  color: #ff6347; /* Tomato */
+
+
+}
 h1 {
-  font-size: 48px;
+  font-size: 5.5em;
   font-weight: bold;
   line-height: 1.1;
   color: #ff4500;
@@ -49,6 +75,8 @@ h1 {
   background-color: #ffffff;
   padding: 10px;
   border-radius: 5px;
+  text-align: center;
+  margin: 20px 0;
   font-family: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap';
 }
 

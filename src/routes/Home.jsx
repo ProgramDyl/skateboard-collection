@@ -40,13 +40,15 @@ export default function Home() {
     <>
       <h1>Dylan's Skate Shop</h1>
       <Link to="/create" className="btn btn-outline-secondary">Add a New Skateboard</Link>
+      <div className="card-row">
       {
         skateboards.length > 0 ?
           skateboards.map(skateboard => (
-            <Card skateboard={skateboard} apiHost={apiHost} showLinks={true} />
+            <Card key={skateboard.id} skateboard={skateboard} apiHost={apiHost} showLinks={true} />
           )) : 
           <p>No skateboards. Bummer.</p>
       }
+      </div>
     </>
   );
 }
