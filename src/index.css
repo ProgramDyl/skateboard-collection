@@ -39,22 +39,27 @@ body {
   min-height: 100vh;
 }
 
-.btn-light {
-  background-color: #ff6347; /* Tomato */
-  border-color: #ff6347;
-  color: #fff;
-}
 
-.btn-light:hover {
-  background-color: #2e8b57; /* SeaGreen */
-  border-color: #2e8b57;
-  color: #fff;
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Adjust spacing between cards */
+  justify-content: center;
+  max-width: 1000px; /* Set a max-width for the container */
+  margin: 0 auto; /* Center the container */
 }
 
 .card {
+  flex: 0 1 calc(20% - 1rem); /* Fit 5 cards per row */
+  max-width: 100%;
   background-color: #222;
   color: #fff;
   border: 2px solid #444;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+  text-align: center;
 }
 
 .card-title {
@@ -66,8 +71,19 @@ body {
 
 
 }
+
+.thumbnail {
+  width: 200px; /* Smaller size for the image */
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid red; /* Adjust visibility */
+  padding: 5px;
+}
+
+
+
 h1 {
-  font-size: 5.5em;
+  font-size: 4em; /* Reduced size */
   font-weight: bold;
   line-height: 1.1;
   color: #ff4500;
@@ -77,7 +93,37 @@ h1 {
   border-radius: 5px;
   text-align: center;
   margin: 20px 0;
-  font-family: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap';
+  font-family: 'Orbitron', sans-serif; /* Using correct font format */
+}
+
+h1::before,
+h1::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 2px;
+  background-color: #ff4500;
+  margin: 0.5em auto;
+}
+
+
+.btn-outline-secondary {
+  display: inline-block; /* Prevent full width stretch */
+  margin: 20px auto; /* Center button under the title */
+  background-color: #ff4500; /* Vibrant orange */
+  border-color: #ff4500;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+}
+
+.btn-outline-secondary:hover {
+  background-color: #ff6347; /* Tomato */
+  border-color: #ff6347;
+  color: #fff;
 }
 
 button {
@@ -115,45 +161,29 @@ button:focus-visible {
 }
 
 .thumbnail {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  border: 1px solid red; /* Temporarily added for visibility */
-  padding: 5px; /* Added padding for visibility */
-}
-
-.card {
-  width: 500px; 
-  height: auto; 
-  margin: 10px;
-  border: 2px solid #000;
-  padding: 10px;  
-}
-
-.card img {
-  width: 100%; 
-  height: auto; 
+  border: 1px solid red; 
+  padding: 5px; 
 }
 
 .skateboard-info {
-  padding-left: 1em;
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
-.row {
-  margin-bottom: 75px;
+.position-absolute {
+  border: 1px solid red; 
+  padding: 5px; 
 }
 
 
-.dropzone {
+/* .dropzone {
   border: 2px dashed #007bff;
   border-radius: 5px;
   padding: 20px;
   text-align: center;
   cursor: pointer;
   color: #007bff;
-}
-
-.position-absolute {
-  border: 1px solid red; /* Temporarily added for visibility */
-  padding: 5px; /* Added padding for visibility */
-}
+} */

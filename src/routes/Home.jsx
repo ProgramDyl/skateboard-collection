@@ -39,7 +39,9 @@ export default function Home() {
   return (
     <>
       <h1>Dylan's Skate Shop</h1>
-      <Link to="/create" className="btn btn-outline-secondary">Add a New Skateboard</Link>
+      <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+        <Link to="/create" className="btn btn-outline-secondary">Add a New Skateboard</Link>
+      </div>
       <div className="card-row">
       {
         skateboards.length > 0 ?
