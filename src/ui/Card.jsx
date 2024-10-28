@@ -8,7 +8,7 @@ export default function Card(props) {
           src={`${props.apiHost}/images/${props.skateboard.filename}`}
           className="thumbnail"
           alt={`${props.skateboard.brand} ${props.skateboard.modelName}`}
-        />
+        /> 
         <div className="skateboard-info text-center mt-3">
           <h4 className="card-title">{`${props.skateboard.brand} ${props.skateboard.modelName}`}</h4>
           <p className="card-text">
